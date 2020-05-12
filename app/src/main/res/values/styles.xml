@@ -31,6 +31,12 @@
     <style name="MediumBlackTextView" parent="MediumTextView">
         <item name="android:textColor">@color/darkText</item>
     </style>
+    <style name="MediumGreyTextView" parent="MediumTextView">
+        <item name="android:textColor">@color/greyText</item>
+    </style>
+    <style name="MediumLightTextView" parent="MediumTextView">
+        <item name="android:textColor">@color/lightText</item>
+    </style>
 
     <style name="DashButtons">
         <item name="android:layout_width">match_parent</item>
