@@ -18,6 +18,7 @@ import net.sure.myhogwarts.extensions.FADE_IN_ACTIVITY
 import net.sure.myhogwarts.features.base.activity.BaseActivity
 import net.sure.myhogwarts.extensions.blinkView
 import net.sure.myhogwarts.extensions.goToActivityWithNoPayload
+import net.sure.myhogwarts.features.houses.all.HousesActivity
 import net.sure.myhogwarts.features.spells.all.SpellsActivity
 import net.sure.myhogwarts.features.students.all.StudentsActivity
 
@@ -38,7 +39,6 @@ class DashboardActivity : BaseActivity(),  FeaturesAdapter.FeatureClickListener{
         binding.dashboardViewModel = dashboardViewModel
         binding.lifecycleOwner = this
 
-
         var features = AppFeatures.values()
         rvFeatures?.layoutManager = GridLayoutManager(this, 2)
         val featuresAdapter =  FeaturesAdapter(this, features)
@@ -50,7 +50,7 @@ class DashboardActivity : BaseActivity(),  FeaturesAdapter.FeatureClickListener{
         view.blinkView(0.5f, 1.0f, 400, 2, Animation.ABSOLUTE, 0, {
             when(AppFeatures.values()[position]){
                 AppFeatures.Students -> goToActivityWithNoPayload(StudentsActivity::class.java, FADE_IN_ACTIVITY)
-                //AppFeatures.Houses -> goToActivityWithNoPayload(HousesActivity::class.java, FADE_IN_ACTIVITY)
+                AppFeatures.Houses -> goToActivityWithNoPayload(HousesActivity::class.java, FADE_IN_ACTIVITY)
                 AppFeatures.Spells -> goToActivityWithNoPayload(SpellsActivity::class.java, FADE_IN_ACTIVITY)
             }
         }, {})
