@@ -33,6 +33,18 @@
                 android:value=".features.students.all.StudentsActivity" />
         </activity>
 
+        <activity
+            android:name=".features.spells.view.ViewSpellActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".features.spells.all.SpellsActivity" />
+        </activity>
+        <activity
+            android:name=".features.spells.all.SpellsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".features.dashboard.DashboardActivity" />
+        </activity>
     </application>
 
 </manifest>
