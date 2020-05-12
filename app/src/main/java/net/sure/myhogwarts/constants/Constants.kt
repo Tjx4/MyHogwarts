@@ -2,6 +2,7 @@ package net.sure.myhogwarts.constants
 
 
 const val ACTIVITY_TRANSITION = "activity_transition"
+const val LAYOUT = "layout"
 const val PAYLOAD_KEY = "payload"
 const val HOUSE = "house_key"
 const val CHARACTER = "character_key"
