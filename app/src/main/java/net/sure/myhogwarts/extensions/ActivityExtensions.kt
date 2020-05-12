@@ -1,4 +1,4 @@
-package net.sure.myhogwarts.features.extensions
+package net.sure.myhogwarts.extensions
 
 import android.app.Activity
 import android.content.Intent
