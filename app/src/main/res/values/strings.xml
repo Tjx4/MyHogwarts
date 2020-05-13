@@ -3,9 +3,10 @@
     <string name="hogwarts">Hogwarts</string>
     <string name="students">Students</string>
     <string name="spells">Spells</string>
-    <string name="no_spells_found">No spells found</string>
     <string name="houses">Houses</string>
+    <string name="no_spells_found">No spells found</string>
     <string name="no_houses_found">No houses found</string>
+    <string name="no_students_found">No students found</string>
     <string name="loading_spells">Loading spells...</string>
     <string name="loading_students">Loading students...</string>
     <string name="loading_houses">Loading houses...</string>

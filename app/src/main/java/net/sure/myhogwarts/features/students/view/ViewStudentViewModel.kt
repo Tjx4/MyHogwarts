@@ -12,4 +12,9 @@ class ViewStudentViewModel(student: Student, application: Application) : BaseVie
     val currentStudent: LiveData<Student?>
         get() = _currentStudent
 
+
+    init {
+        _currentStudent.value = student
+    }
+
 }

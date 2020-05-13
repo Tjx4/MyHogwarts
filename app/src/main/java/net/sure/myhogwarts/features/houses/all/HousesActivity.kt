@@ -42,6 +42,7 @@ class HousesActivity : BaseChildActivity(), HousesAdapter.HouseClickListener {
         binding.lifecycleOwner = this
 
         housesViewModel.isBusy.observe(this, Observer { isBusy(it) })
+        housesViewModel.isNoContent.observe(this, Observer { isNoContent(it) })
         housesViewModel.houses.observe(this, Observer { onHousesSet(it) })
 
         housesViewModel.getHousesFromApi()
@@ -54,8 +55,11 @@ class HousesActivity : BaseChildActivity(), HousesAdapter.HouseClickListener {
             hideCurrentLoadingDialog(this)
     }
 
+    private fun isNoContent(isNoContent: Boolean){
+        tvNoHouses.visibility = View.VISIBLE
+    }
+
     private fun onHousesSet(houses: List<House?>?){
-        if(houses.isNullOrEmpty()) tvNoHouses.visibility = View.VISIBLE
         rvHouses?.layoutManager = LinearLayoutManager(this)
         val housesAdapter = HousesAdapter(this, houses)
         housesAdapter.setClickListener(this)

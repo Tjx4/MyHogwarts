@@ -14,6 +14,10 @@ class SpellsViewModel(private val spellsRepository: SpellsRepository, applicatio
     val isBusy: LiveData<Boolean>
         get() = _isBusy
 
+    private var _isNoContent: MutableLiveData<Boolean>  = MutableLiveData()
+    val isNoContent: LiveData<Boolean>
+        get() = _isNoContent
+
     private var _spells: MutableLiveData<List<Spell?>?> = MutableLiveData()
     val spells: LiveData<List<Spell?>?>
         get() = _spells
@@ -30,7 +34,7 @@ class SpellsViewModel(private val spellsRepository: SpellsRepository, applicatio
                     _spells.value = spells
                 }
                 else{
-                    // houses not found
+                    _isNoContent.value = true
                 }
 
                 _isBusy.value = false

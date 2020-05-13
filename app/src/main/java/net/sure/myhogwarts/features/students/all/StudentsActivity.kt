@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.android.synthetic.main.activity_houses.*
 import net.sure.myhogwarts.features.students.StudentsRepository
 import kotlinx.android.synthetic.main.activity_students.*
 import net.sure.myhogwarts.features.students.view.ViewStudentActivity
@@ -43,6 +44,7 @@ class StudentsActivity : BaseChildActivity(), CharactersAdapter.CharacterClickLi
         binding.lifecycleOwner = this
 
         charactersViewModel.isBusy.observe(this, Observer { isBusy(it) })
+        charactersViewModel.isNoContent.observe(this, Observer { isNoContent(it) })
         charactersViewModel.characters.observe(this, Observer { onCharactersSet(it) })
 
         charactersViewModel.getStudentsFromApi()
@@ -55,8 +57,11 @@ class StudentsActivity : BaseChildActivity(), CharactersAdapter.CharacterClickLi
             hideCurrentLoadingDialog(this)
     }
 
+    private fun isNoContent(isNoContent: Boolean){
+        tvNoStudents.visibility = View.VISIBLE
+    }
+
     private fun onCharactersSet(students: List<Student?>?){
-        if(students.isNullOrEmpty()) tvNoStudents.visibility = View.VISIBLE
         rvCharacters?.layoutManager = LinearLayoutManager(this)
         val housesAdapter = CharactersAdapter(this, R.layout.student_view ,students)
         housesAdapter.setClickListener(this)

@@ -14,6 +14,10 @@ class HousesViewModel(val housesRepository: HousesRepository, application: Appli
     val isBusy: LiveData<Boolean>
         get() = _isBusy
 
+    private var _isNoContent: MutableLiveData<Boolean>  = MutableLiveData()
+    val isNoContent: LiveData<Boolean>
+        get() = _isNoContent
+
     private var _houses: MutableLiveData<List<House?>?> = MutableLiveData()
     val houses: LiveData<List<House?>?>
         get() = _houses
@@ -30,7 +34,7 @@ class HousesViewModel(val housesRepository: HousesRepository, application: Appli
                     _houses.value = houses
                 }
                 else{
-                    // houses not found
+                    _isNoContent.value = true
                 }
 
                 _isBusy.value = false

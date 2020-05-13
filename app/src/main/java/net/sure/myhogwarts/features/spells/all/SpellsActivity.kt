@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import net.sure.myhogwarts.features.spells.SpellsRepository
 import net.sure.myhogwarts.features.spells.view.ViewSpellActivity
 import kotlinx.android.synthetic.main.activity_spells.*
+import kotlinx.android.synthetic.main.activity_students.*
 import net.sure.myhogwarts.R
 import net.sure.myhogwarts.adapters.SpellsAdapter
 import net.sure.myhogwarts.constants.SPELL
@@ -41,6 +42,7 @@ class SpellsActivity : BaseChildActivity(), SpellsAdapter.SpellClickListener {
         binding.lifecycleOwner = this
 
         spellsViewModel.isBusy.observe(this, Observer { isBusy(it) })
+        spellsViewModel.isNoContent.observe(this, Observer { isNoContent(it) })
         spellsViewModel.spells.observe(this, Observer { onSpellsSet(it) })
 
         supportActionBar?.title = getString(R.string.spells)
@@ -55,8 +57,11 @@ class SpellsActivity : BaseChildActivity(), SpellsAdapter.SpellClickListener {
             hideCurrentLoadingDialog(this)
     }
 
+    private fun isNoContent(isNoContent: Boolean){
+        tvNoSpells.visibility = View.VISIBLE
+    }
+
     private fun onSpellsSet(spells: List<Spell?>?){
-        if(spells.isNullOrEmpty()) tvNoSpells.visibility = View.VISIBLE
         rvSpells?.layoutManager = LinearLayoutManager(this)
         val spellsAdapter = SpellsAdapter(this, spells)
         spellsAdapter.setClickListener(this)
