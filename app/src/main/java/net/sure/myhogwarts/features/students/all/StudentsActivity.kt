@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.activity_students.*
 import net.sure.myhogwarts.features.students.view.ViewStudentActivity
 import net.sure.myhogwarts.R
 import net.sure.myhogwarts.adapters.CharactersAdapter
-import net.sure.myhogwarts.constants.CHARACTER
+import net.sure.myhogwarts.constants.STUDENT
 import net.sure.myhogwarts.databinding.ActivityStudentsBinding
 import net.sure.myhogwarts.extensions.SLIDE_IN_ACTIVITY
 import net.sure.myhogwarts.extensions.blinkView
@@ -68,7 +68,7 @@ class StudentsActivity : BaseChildActivity(), CharactersAdapter.CharacterClickLi
             val selectedCharacter = charactersViewModel.characters?.value?.get(position)
 
             var payload = Bundle()
-            payload.putParcelable(CHARACTER, selectedCharacter)
+            payload.putParcelable(STUDENT, selectedCharacter)
             goToActivityWithPayload(ViewStudentActivity::class.java, payload, SLIDE_IN_ACTIVITY)
         }, {})
     }

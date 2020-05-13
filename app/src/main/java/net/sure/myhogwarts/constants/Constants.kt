@@ -6,7 +6,7 @@ const val TITLE = "tittle"
 const val CATID = "catId"
 const val PAYLOAD_KEY = "payload"
 const val HOUSE = "house_key"
-const val CHARACTER = "character_key"
+const val STUDENT = "character_key"
 const val SPELL = "spell_key"
 
 const val HOST = "https://www.potterapi.com/"

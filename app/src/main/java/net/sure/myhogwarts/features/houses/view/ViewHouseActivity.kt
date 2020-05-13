@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_house.*
 import net.sure.myhogwarts.R
 import net.sure.myhogwarts.adapters.CharactersAdapter
-import net.sure.myhogwarts.constants.CHARACTER
+import net.sure.myhogwarts.constants.STUDENT
 import net.sure.myhogwarts.constants.HOUSE
 import net.sure.myhogwarts.constants.PAYLOAD_KEY
 import net.sure.myhogwarts.databinding.ActivityHouseBinding
@@ -40,31 +40,23 @@ class ViewHouseActivity : BaseChildActivity(), CharactersAdapter.CharacterClickL
 
         var studentsRepository = StudentsRepository()
         var application = requireNotNull(this).application
-        var viewModelFactory = ViewHouseModelFactory(studentsRepository, application)
+        var viewModelFactory = ViewHouseModelFactory(house, studentsRepository, application)
 
         viewHouseViewModel = ViewModelProviders.of(this, viewModelFactory).get(ViewHouseViewModel::class.java)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_house)
         binding.viewHouseViewModel = viewHouseViewModel
         binding.lifecycleOwner = this
 
-        viewHouseViewModel.house.observe(this, Observer { onHouseSet(it) })
         viewHouseViewModel.isBusy.observe(this, Observer { isBusy(it) })
         viewHouseViewModel.members.observe(this, Observer { onHouseMembersSet(it) })
 
-        viewHouseViewModel.setHouse(house)
+        supportActionBar?.title = house?.name
+
         viewHouseViewModel.getHouseMembersFromApi()
     }
 
     private fun isBusy(isBusy: Boolean){
-        llMemberLoader.visibility = if(isBusy) View.VISIBLE else  View.GONE
-    }
-
-    private fun onHouseSet(house: House?){
-        supportActionBar?.title = house?.name
-        txtHouseMascot.text = house?.mascot
-        txtHouseFounder.text = house?.founder
-        txtHouseGhost.text = house?.houseGhost
-        //txtHeadOfHouse.text = house?.headOfHouse
+        llMemberLoader.visibility = if(isBusy) View.VISIBLE else View.GONE
     }
 
     private fun onHouseMembersSet(members: List<Student?>?){
@@ -79,7 +71,7 @@ class ViewHouseActivity : BaseChildActivity(), CharactersAdapter.CharacterClickL
             val selectedCharacter = viewHouseViewModel.members?.value?.get(position)
 
             var payload = Bundle()
-            payload.putParcelable(CHARACTER, selectedCharacter)
+            payload.putParcelable(STUDENT, selectedCharacter)
             goToActivityWithPayload(ViewStudentActivity::class.java, payload, SLIDE_IN_ACTIVITY)
         }, {})
     }

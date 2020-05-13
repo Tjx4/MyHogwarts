@@ -1,25 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:paddingTop="@dimen/xsmall_padding"
-    android:paddingHorizontal="@dimen/xsmall_padding"
-    android:background="@color/lightBackground"
-    tools:context=".features.students.view.ViewStudentActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="viewStudentViewModel"
+            type="net.sure.myhogwarts.features.students.view.ViewStudentViewModel"/>
+    </data>
 
-    <androidx.cardview.widget.CardView
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="@dimen/xsmall_padding"
+        android:paddingHorizontal="@dimen/xsmall_padding"
+        android:background="@color/lightBackground"
+        tools:context=".features.students.view.ViewStudentActivity">
+
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#EEE">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/small_padding">
 
-            <TextView
+                <TextView
                     android:id="@+id/tvNameLabel"
                     style="@style/MediumBlackTextView"
                     android:layout_width="wrap_content"
@@ -29,17 +36,18 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"/>
 
-            <TextView
+                <TextView
                     android:id="@+id/tvCharacterHouse"
                     style="@style/MediumGreyTextView"
                     android:layout_width="0dp"
                     android:gravity="left"
+                    tools:text="Character name"
+                    android:text="@{viewStudentViewModel.currentStudent.house}"
                     app:layout_constraintLeft_toRightOf="@+id/tvNameLabel"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="Character name" />
+                    app:layout_constraintTop_toTopOf="parent"/>
 
-            <TextView
+                <TextView
                     android:id="@+id/tvRoleLabel"
                     style="@style/MediumBlackTextView"
                     android:layout_width="wrap_content"
@@ -49,17 +57,18 @@
                     app:layout_constraintTop_toBottomOf="@+id/tvCharacterHouse"
                     app:layout_constraintLeft_toLeftOf="parent"/>
 
-            <TextView
+                <TextView
                     android:id="@+id/tvCharacterRole"
                     style="@style/MediumGreyTextView"
                     android:layout_width="0dp"
                     tools:text="Character role"
+                    android:text="@{viewStudentViewModel.currentStudent.role}"
                     android:gravity="left"
                     app:layout_constraintTop_toBottomOf="@+id/tvCharacterHouse"
                     app:layout_constraintLeft_toRightOf="@+id/tvRoleLabel"
                     app:layout_constraintRight_toRightOf="parent"/>
 
-            <TextView
+                <TextView
                     android:id="@+id/tvSchoolLabel"
                     style="@style/MediumBlackTextView"
                     android:layout_width="wrap_content"
@@ -69,17 +78,18 @@
                     app:layout_constraintTop_toBottomOf="@+id/tvCharacterRole"
                     app:layout_constraintLeft_toLeftOf="parent"/>
 
-            <TextView
+                <TextView
                     android:id="@+id/tvSchool"
                     style="@style/MediumGreyTextView"
                     android:layout_width="0dp"
                     tools:text="School"
+                    android:text="@{viewStudentViewModel.currentStudent.school}"
                     android:gravity="left"
                     app:layout_constraintTop_toBottomOf="@+id/tvCharacterRole"
                     app:layout_constraintLeft_toRightOf="@+id/tvSchoolLabel"
                     app:layout_constraintRight_toRightOf="parent"/>
 
-            <TextView
+                <TextView
                     android:id="@+id/tvSpeciesLabel"
                     style="@style/MediumBlackTextView"
                     android:layout_width="wrap_content"
@@ -89,17 +99,18 @@
                     app:layout_constraintTop_toBottomOf="@+id/tvSchool"
                     app:layout_constraintLeft_toLeftOf="parent"/>
 
-            <TextView
+                <TextView
                     android:id="@+id/tvSpecies"
                     style="@style/MediumGreyTextView"
                     tools:text="Species"
+                    android:text="@{viewStudentViewModel.currentStudent.species}"
                     android:gravity="left"
                     android:layout_width="0dp"
                     app:layout_constraintTop_toBottomOf="@+id/tvSchool"
                     app:layout_constraintLeft_toRightOf="@+id/tvSpeciesLabel"
                     app:layout_constraintRight_toRightOf="parent"/>
 
-            <TextView
+                <TextView
                     android:id="@+id/tvBloodStatusLabel"
                     style="@style/MediumBlackTextView"
                     android:layout_width="wrap_content"
@@ -109,18 +120,22 @@
                     app:layout_constraintTop_toBottomOf="@+id/tvSpecies"
                     app:layout_constraintLeft_toLeftOf="parent"/>
 
-            <TextView
+                <TextView
                     android:id="@+id/tvBloodStatus"
                     style="@style/MediumGreyTextView"
                     android:layout_width="0dp"
                     tools:text="bloodStatus"
+                    android:text="@{viewStudentViewModel.currentStudent.bloodStatus}"
                     android:gravity="left"
                     app:layout_constraintTop_toBottomOf="@+id/tvSpecies"
                     app:layout_constraintLeft_toRightOf="@+id/tvBloodStatusLabel"
                     app:layout_constraintRight_toRightOf="parent"/>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.cardview.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
-</FrameLayout>
+    </FrameLayout>
+
+</layout>
+
