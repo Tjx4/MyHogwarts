@@ -18,7 +18,7 @@ class StudentsViewModel(val studentsRepository: StudentsRepository, application:
     val characters: LiveData<List<Student?>?>
         get() = _characters
 
-    fun getAndShowStudents(){
+    fun getStudentsFromApi(){
         _isBusy.value = true
 
         ioScope.launch {

@@ -34,11 +34,7 @@ class HousesActivity : BaseChildActivity(), HousesAdapter.HouseClickListener {
 
         var housesRepository = HousesRepository()
         var application = requireNotNull(this).application
-        var viewModelFactory =
-            HousesViewModelFactory(
-                housesRepository,
-                application
-            )
+        var viewModelFactory = HousesViewModelFactory(housesRepository, application)
 
         housesViewModel = ViewModelProviders.of(this, viewModelFactory).get(HousesViewModel::class.java)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_houses)
@@ -48,17 +44,18 @@ class HousesActivity : BaseChildActivity(), HousesAdapter.HouseClickListener {
         housesViewModel.isBusy.observe(this, Observer { isBusy(it) })
         housesViewModel.houses.observe(this, Observer { onHousesSet(it) })
 
-        housesViewModel.getAndShowHouses()
+        housesViewModel.getHousesFromApi()
     }
 
     private fun isBusy(isBusy: Boolean){
         if(isBusy)
-            showLoadingDialog("please wait...", this)
+            showLoadingDialog(getString(R.string.loading_houses), this)
         else
             hideCurrentLoadingDialog(this)
     }
 
     private fun onHousesSet(houses: List<House?>?){
+        if(houses.isNullOrEmpty()) tvNoHouses.visibility = View.VISIBLE
         rvHouses?.layoutManager = LinearLayoutManager(this)
         val housesAdapter = HousesAdapter(this, houses)
         housesAdapter.setClickListener(this)

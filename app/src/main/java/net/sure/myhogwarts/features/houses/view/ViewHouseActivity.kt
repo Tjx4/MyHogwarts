@@ -33,10 +33,10 @@ class ViewHouseActivity : BaseChildActivity(), CharactersAdapter.CharacterClickL
 
         val house = intent.getBundleExtra(PAYLOAD_KEY)?.getParcelable<House>(HOUSE)
 
-if(house == null) {
-    finish()
-    return
-}
+        if(house == null) {
+            finish()
+            return
+        }
 
         var studentsRepository = StudentsRepository()
         var application = requireNotNull(this).application

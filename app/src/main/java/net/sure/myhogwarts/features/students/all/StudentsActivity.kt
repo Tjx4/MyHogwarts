@@ -35,11 +35,7 @@ class StudentsActivity : BaseChildActivity(), CharactersAdapter.CharacterClickLi
         var studentsRepository =
             StudentsRepository()
         var application = requireNotNull(this).application
-        var viewModelFactory =
-            StudentsViewModelFactory(
-                studentsRepository,
-                application
-            )
+        var viewModelFactory = StudentsViewModelFactory(studentsRepository, application)
 
         charactersViewModel = ViewModelProviders.of(this, viewModelFactory).get(StudentsViewModel::class.java)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_students)
@@ -49,17 +45,18 @@ class StudentsActivity : BaseChildActivity(), CharactersAdapter.CharacterClickLi
         charactersViewModel.isBusy.observe(this, Observer { isBusy(it) })
         charactersViewModel.characters.observe(this, Observer { onCharactersSet(it) })
 
-        charactersViewModel.getAndShowStudents()
+        charactersViewModel.getStudentsFromApi()
     }
 
     private fun isBusy(isBusy: Boolean){
         if(isBusy)
-            showLoadingDialog("please wait...", this)
+            showLoadingDialog(getString(R.string.loading_students), this)
         else
             hideCurrentLoadingDialog(this)
     }
 
     private fun onCharactersSet(students: List<Student?>?){
+        if(students.isNullOrEmpty()) tvNoStudents.visibility = View.VISIBLE
         rvCharacters?.layoutManager = LinearLayoutManager(this)
         val housesAdapter = CharactersAdapter(this, R.layout.student_view ,students)
         housesAdapter.setClickListener(this)

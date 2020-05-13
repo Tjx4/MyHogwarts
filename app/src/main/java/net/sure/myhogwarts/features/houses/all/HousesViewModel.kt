@@ -18,7 +18,7 @@ class HousesViewModel(val housesRepository: HousesRepository, application: Appli
     val houses: LiveData<List<House?>?>
         get() = _houses
 
-    fun getAndShowHouses(){
+    fun getHousesFromApi(){
         _isBusy.value = true
 
         ioScope.launch {

@@ -16,7 +16,6 @@ import net.sure.myhogwarts.databinding.ActivityDashboardBinding
 import net.sure.myhogwarts.enums.AppFeatures
 import net.sure.myhogwarts.extensions.FADE_IN_ACTIVITY
 import net.sure.myhogwarts.features.base.activity.BaseActivity
-import net.sure.myhogwarts.extensions.blinkView
 import net.sure.myhogwarts.extensions.goToActivityWithNoPayload
 import net.sure.myhogwarts.extensions.rotateView
 import net.sure.myhogwarts.features.houses.all.HousesActivity
@@ -54,7 +53,6 @@ class DashboardActivity : BaseActivity(),  FeaturesAdapter.FeatureClickListener{
                 AppFeatures.Houses -> goToActivityWithNoPayload(HousesActivity::class.java, FADE_IN_ACTIVITY)
                 AppFeatures.Spells -> goToActivityWithNoPayload(SpellsActivity::class.java, FADE_IN_ACTIVITY)
             }
-
         }, {})
 
     }

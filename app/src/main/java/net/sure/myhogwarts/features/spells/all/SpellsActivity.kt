@@ -45,19 +45,18 @@ class SpellsActivity : BaseChildActivity(), SpellsAdapter.SpellClickListener {
 
         supportActionBar?.title = getString(R.string.spells)
 
-        spellsViewModel.getAndShowSpells()
+        spellsViewModel.getSpellsFromApi()
     }
 
     private fun isBusy(isBusy: Boolean){
         if(isBusy)
-            showLoadingDialog("please wait...", this)
+            showLoadingDialog(getString(R.string.loading_spells), this)
         else
             hideCurrentLoadingDialog(this)
     }
 
     private fun onSpellsSet(spells: List<Spell?>?){
-if(spells.isNullOrEmpty()) tvNoSpells.visibility = View.GONE
-
+        if(spells.isNullOrEmpty()) tvNoSpells.visibility = View.VISIBLE
         rvSpells?.layoutManager = LinearLayoutManager(this)
         val spellsAdapter = SpellsAdapter(this, spells)
         spellsAdapter.setClickListener(this)

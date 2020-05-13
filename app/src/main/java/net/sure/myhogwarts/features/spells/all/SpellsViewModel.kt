@@ -18,7 +18,7 @@ class SpellsViewModel(private val spellsRepository: SpellsRepository, applicatio
     val spells: LiveData<List<Spell?>?>
         get() = _spells
 
-    fun getAndShowSpells(){
+    fun getSpellsFromApi(){
         _isBusy.value = true
 
         ioScope.launch {

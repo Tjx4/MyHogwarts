@@ -25,14 +25,14 @@
                 android:background="?android:attr/selectableItemBackground"/>
 
         <TextView
-                android:id="@+id/tvNoSpells"
-                style="@style/MediumBlackTextView"
-                android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:text="@string/no_spells_found"/>
+            android:id="@+id/tvNoSpells"
+            style="@style/MediumBlackTextView"
+            android:visibility="gone"
+            android:layout_marginTop="@dimen/xlarge__margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="@string/no_spells_found"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
